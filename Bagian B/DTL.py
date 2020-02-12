@@ -7,7 +7,7 @@ class Node:
     def __init__(self, instances, targets):
         self.rule_children = {}     #dictionary yang berisi string (rule) sebagai key-nya dan objek Node sebagai valuenya
         self.entropy = 0            #nilai entropy node
-        self.target = None          #nilai target jika ada
+        self.target = None          #nilai target jika ada (untuk node-node daun)
         self.instances = instances  #array yang menyimpan instans
         self.targets = targets      #array yang menyimpan target
 
@@ -19,8 +19,14 @@ class Node:
     def get_targets(self):
         return self.targets
 
+    def get_target(self):
+        return self.target
+
     def get_entropy(self):
         return self.entropy
+
+    def get_rule_children(self):
+        return self.rule_children
     
     def next_node(self):
         X = self.instances
