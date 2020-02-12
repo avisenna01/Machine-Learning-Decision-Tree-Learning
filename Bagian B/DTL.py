@@ -12,17 +12,20 @@ class DecissionTree(ABC):
 
     def entropy(self, arr_target):
         s = len(arr_target) #Banyaknya instans
-        sv = dict()         #Menghitung banyaknya instans dari kelas tertentu
+        sv = [0]*s         #Menghitung banyaknya instans dari kelas tertentu
         entropy = 0         #Variabel sum
 
         for target in arr_target:
             sv[target] += 1
 
         for target in arr_target:
-            p = s/sv
+            p = s/sv[target]
             entropy += -1*(p)*log2(p)
 
         return entropy
-    
-    
+
+    def information_gain(self, arr_parent_target, arr_childrens_target):
+        parent_entropy = self.entropy(arr_parent_target)
+        num_child = len(arr_childrens_target)
+
 
