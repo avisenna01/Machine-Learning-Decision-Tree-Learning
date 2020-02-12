@@ -2,7 +2,24 @@ from abc import ABC, abstractmethod
 from math import log2
 import pandas
 
-class DecissionTree(ABC):
+class Node:
+
+    def Node():
+        self.childrens = []
+        self.rules = {}
+        self.entropy = 0
+        self.attribute = None
+        self.target = None
+    
+    def get_children(arr_instan):
+        for rule in self.rules.keys():
+            pass
+
+    def build_rules(rules):
+        self.rules = rules
+            
+
+class DecisionTree(ABC):
 
     @abstractmethod
     def fit(self, arr_instans, arr_target):
