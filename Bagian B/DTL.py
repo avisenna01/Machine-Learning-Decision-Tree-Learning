@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from math import log2
+import pandas
 
 class DecissionTree(ABC):
 
@@ -9,6 +10,10 @@ class DecissionTree(ABC):
     @abstractmethod
     def predict(self, arr_instans):
         pass
+
+     def read_csv(self, file): # file dalam string
+        csvFile = pandas.read_csv(file)
+        return csvFile
 
     def entropy(self, arr_target):
         s = len(arr_target) #Banyaknya instans
@@ -24,5 +29,17 @@ class DecissionTree(ABC):
 
         return entropy
     
+    def gain(self, entropy, data_train): # assume
+
+        row = len(data_train)
+        col = len(data_train[0])
+
+        for j in range(col):
+            for i in range(col[j])
+
+        entropy_calculation = 
+        return entropy - entropy_calculation
+        
+
     
 
