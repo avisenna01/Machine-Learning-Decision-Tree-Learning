@@ -134,7 +134,24 @@ class DecisionTree():
         return ent
     
     def split_information(self, list_col, arr_target, node_p):
-        # TBD
+        r = 0
+        ratio = len(list_col)
+        l = []
+        l_sum = []
+        for i in list_col:
+            if i not in l:
+                l.append(i)
+                l_sum.append(1)
+            else:
+                for j in range(len(l)):
+                    if (i == l[j]):
+                        l_sum[j] += 1
+                        break
+        att_total = len(l)
+        for i in range(att_total):
+            r -= (l_sum[i]/ratio)*log2(l_sum[i]/ratio)
+        return r
+
 
     def gain_ratio(self, list_col, arr_target, node_p):
         return information_gain(list_col, arr_target, node_p) / split_information(list_col, arr_target, node_p)
