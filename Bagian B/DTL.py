@@ -4,27 +4,11 @@ import pandas
 
 class Node:
 
-    def __init__(self, instances, targets, target=None):
+    def __init__(self, instances, targets):
         self.rule_children = {}     #dictionary yang berisi string (rule) sebagai key-nya dan objek Node sebagai valuenya
-        self.target = target          #nilai target jika ada (untuk node-node daun)
         self.instances = instances  #array yang menyimpan instans
         self.targets = targets      #array yang menyimpan target
         self.entropy = self.calc_entropy()
-
-    def get_instances(self):
-        return self.instances
-
-    def get_targets(self):
-        return self.targets
-
-    def get_target(self):
-        return self.target
-
-    def get_entropy(self):
-        return self.entropy
-
-    def get_rule_children(self):
-        return self.rule_children
     
     def next_node(self, X):
         for rule in self.rule_children.keys():
@@ -52,8 +36,6 @@ class Node:
             entropy += -1*(p)*log2(p)
 
         return entropy
-
-
 
 class DecisionTree(ABC):
 
