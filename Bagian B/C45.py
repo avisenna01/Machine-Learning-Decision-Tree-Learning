@@ -40,8 +40,8 @@ class C45(DecisionTree):
         arr_instans = arr_instans.drop(columns="target", axis=1)
         arr_instans = arr_instans.values.tolist()
 
-        print(arr_instans)
-        print(arr_target)
+        #ic(arr_instans)
+        #ic(arr_target)
 
         #buat objek ID3
         id3_ = ID3(arr_instans, arr_target)

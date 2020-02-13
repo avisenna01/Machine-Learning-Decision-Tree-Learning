@@ -1,4 +1,5 @@
 from DTL import DecisionTree, Node
+from icecream import ic
 # from DTL import Node
 
 class ID3(DecisionTree):
@@ -32,8 +33,8 @@ class ID3(DecisionTree):
             max_gain = 0 # value gain
             node_p.attribute = 0 # index col gain idx_gain
 
-            """ ic(arr_instans)
-            ic(arr_target) """
+            ic(arr_instans)
+            ic(arr_target)
 
             for j in range(col):
                 dict_attrval_targets = {}
@@ -46,14 +47,16 @@ class ID3(DecisionTree):
                     else:
                         dict_attrval_targets[curr_val] = [arr_target[i]]
                 gain = self.information_gain(node_p.entropy, len(arr_instans), dict_attrval_targets.values())
-                """ ic(dict_attrval_targets)
+                ic(dict_attrval_targets)
                 ic(dict_attrval_targets.values())
                 ic(gain)
-                ic(node_p.attribute) """
 
                 if (max_gain < gain):
                     max_gain = gain
                     node_p.attribute = j
+
+                ic(max_gain)
+                ic(node_p.attribute)
 
             #membentuk list rules dan membagi instances dan targets kedalam children nodesnya
             rules = []
@@ -73,9 +76,9 @@ class ID3(DecisionTree):
                     new_instances_targets[curr_val][0].append(instance)
                     new_instances_targets[curr_val][1].append(arr_target[i])
 
-            """ ic(rules)
+            ic(rules)
             ic(attr_val)
-            ic(new_instances_targets) """
+            ic(new_instances_targets)
 
             #membentuk node childrennya
             childrens = []

@@ -1,3 +1,4 @@
+import sys
 import pandas
 from DTL import Node
 from ID3 import ID3
@@ -5,6 +6,9 @@ from C45 import C45
 from sklearn import preprocessing
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
+
+#recursion depth
+#sys.setrecursionlimit(1500)
 
 # Load Datasets
 iris_datasets = load_iris()
@@ -37,7 +41,7 @@ tennis_train_instances, tennis_test_instances, tennis_train_targets, tennis_test
 iris_instances = iris_datasets.data
 iris_targets = iris_datasets.target
 
-iris_train_instances, iris_test_instances, iris_train_targets, iris_test_targets = train_test_split(iris_instances, iris_targets, test_size=0.2, random_state=42)
+iris_train_instances, iris_test_instances, iris_train_targets, iris_test_targets = train_test_split(iris_instances, iris_targets, test_size=0.9, random_state=42)
 
 #testing kode
 test_instances = [[1, 1], [0, 0]]
