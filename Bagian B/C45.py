@@ -24,47 +24,46 @@ class C45():
         attribute_name = training_data.columns[:-1]
         target_name = training_data.columns[-1]
 
-        
+        final_dataset = training_data
 
         
-        sorted = training_data.sort_values(by=['outlook'])
-       
+        for att in attribute_name:
+
+
+            sorted = final_dataset.sort_values(by=[att])
         
-        candidate_index = []
-        for x in range(len(sorted)):
-            current_target = sorted[target_name].iloc[x] #nilai target saat ini
-
-            if not(x==1):
-                if not(sorted[target_name].iloc[x-1] == sorted[target_name].iloc[x]):
-                    candidate_index.append(x)
-                 
-        print(candidate_index)
-
-        information_gains = []
-
-        for i in candidate_index:
-            upper = sorted[:i]
-            down = sorted[i:]
-            #print(C45.entrophy(upper))
-            information_gain =  len(upper)/len(training_data)*C45.entrophy(upper) + len(down)/len(training_data)*C45.entrophy(down)
-            print(information_gain)
-            information_gains.append(information_gain)
-
-        temp = information_gains.index(min(information_gains))
-
-        print(temp)
-
-        split_point = candidate_index[temp]
-        sorted['outlook'][:split_point] = 0
-        sorted['outlook'][split_point:] = 1
-
-        print(sorted)
-        
-        
-
             
+            candidate_index = []
+            for x in range(len(sorted)):
+                current_target = sorted[target_name].iloc[x] #nilai target saat ini
 
-        return 
+                if not(x==1):
+                    if not(sorted[target_name].iloc[x-1] == sorted[target_name].iloc[x]):
+                        candidate_index.append(x)
+                    
+            #print(candidate_index)
+
+            information_gains = []
+
+            for i in candidate_index:
+                upper = sorted[:i]
+                down = sorted[i:]
+                #print(C45.entrophy(upper))
+                information_gain =  len(upper)/len(training_data)*C45.entrophy(upper) + len(down)/len(training_data)*C45.entrophy(down)
+                #print(information_gain)
+                information_gains.append(information_gain)
+
+            temp = information_gains.index(min(information_gains))
+
+            #print(temp)
+
+            split_point = candidate_index[temp]
+            sorted[att][:split_point] = 0
+            sorted[att][split_point:] = 1
+
+            final_dataset = sorted
+            gigit
+        return final_dataset
 
     def entrophy(dataset):
         total_value = len(dataset)
@@ -77,6 +76,8 @@ class C45():
             res = res - i/total_value * math.log2(i/total_value)
 
         return res
+
+
 
 
 
@@ -101,13 +102,10 @@ iris_targets = pandas.DataFrame(iris.target)
 
 iris_data = df.assign(target = iris_targets.values)
 
-tt = C45.continuous_value(tennisData)
 
-print(tennisData['play'].value_counts()[1])
 
-iris_colum = iris_data.columns[:-1]
+tt = C45.continuous_value(iris_data)
 
-print(iris_data[iris_colum])
-
+print(tt)
 
 
