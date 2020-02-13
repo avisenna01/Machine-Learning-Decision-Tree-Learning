@@ -51,10 +51,13 @@ class id3(DecisionTree):
                 if (temp_instans[i][self.attribute]==list_att_val[val_idx]):    
                     children_instans.append(temp_instans[i])
                     children_target_instans.append(temp_target[i])
-
-            list_node.append(id3(children_instans, children_target_instans))
+            #         print("test1")
+            #     print("test2")
+            # print("test3")
+            list_node.append(fit(children_instans, children_target_instans))
         
         node_p.set_rule_children(["=="],list_node)
+        node_p.print_node()
                         
 
         

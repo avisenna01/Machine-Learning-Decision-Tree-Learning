@@ -39,6 +39,13 @@ class Node:
 
         return entropy
 
+    def print_node(self):
+        # print(self.rule_children)
+        print(self.attribute)
+        print(self.instances)
+        print(self.targets)
+        print(self.entropy)
+
 class DecisionTree():
 
     def __init__(self, arr_instans, arr_target):
