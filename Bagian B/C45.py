@@ -1,15 +1,58 @@
-from DTL import DecisionTree, Node
 import os
 import pandas
-from sklearn import preprocessing
-from sklearn.datasets import load_iris
-import math
+from DTL import DecisionTree, Node
+from math import log2
+from icecream import ic
+from ID3 import ID3
 
-class C45():
+class C45(DecisionTree):
 
-    def post_prune(self):
-        return None
+    def __init__(self, arr_instans, arr_target):
+        DecisionTree.__init__(self, arr_instans, arr_target)
 
+    def predict(self, instances):
+        predictions = []
+        for instance in instances:
+            root = self.root
+            while root.attribute != None:
+                root = root.next_node(instance)
+            predictions.append(root.target)
+        return predictions
+
+    def fit(self, arr_instans, arr_target):
+        #convert array to dataframe
+        df = pandas.DataFrame.from_records(arr_instans)
+        arr_target = pandas.DataFrame(arr_target)
+        arr_instans = df.assign(target = arr_target.values)
+
+        ic(arr_instans)
+
+        #pre-process continuous valued attribute
+        arr_instans = self.continuous_value(arr_instans)
+
+        #pre-process missing value attribute
+        arr_instans = self.missing_value_handler(arr_instans)
+
+        #pre-process attribute with many values
+
+        #convert dataframe to array of array
+        arr_target = [target[0] for target in arr_target.values]
+        arr_instans = arr_instans.drop(columns="target", axis=1)
+        arr_instans = arr_instans.values.tolist()
+
+        print(arr_instans)
+        print(arr_target)
+
+        #buat objek ID3
+        id3_ = ID3(arr_instans, arr_target)
+
+        #fitting ID3
+        id3_.fit(arr_instans, arr_target)
+
+        #this->root = ID3.root
+        self.root = id3_.root
+
+    @staticmethod
     def target_most_common_attribute(training_data):
 
         target_name = training_data.columns[-1] #name of target attribute
@@ -21,7 +64,7 @@ class C45():
 
         return dict
 
-    def missing_value_handler(training_data):
+    def missing_value_handler(self, training_data):
 
         most_common_att = C45. target_most_common_attribute(training_data)
         attribute_name = training_data.columns[:-1]
@@ -38,12 +81,7 @@ class C45():
         
         return training_data
 
-
-        
-
-
-
-    def continuous_value(training_data):
+    def continuous_value(self, training_data):
 
         attribute_name = training_data.columns[:-1]
         target_name = training_data.columns[-1]
@@ -89,6 +127,7 @@ class C45():
     
         return final_dataset.astype(int)
 
+    @staticmethod
     def entrophy(dataset):
         total_value = len(dataset)
         target_name = dataset.columns[-1]
@@ -97,7 +136,7 @@ class C45():
         res = 0
         for i in value_count:
 
-            res = res - i/total_value * math.log2(i/total_value)
+            res = res - i/total_value * log2(i/total_value)
 
         return res
 
@@ -113,7 +152,7 @@ class C45():
 
 
 
-#Load Datasets
+""" #Load Datasets
 #print(tennisData.columns[-1])
 
 iris = load_iris()
@@ -134,7 +173,4 @@ print(C45.target_most_common_attribute(tennisData))
 print(C45.missing_value_handler(tennisData))
 
 print(C45.continuous_value(iris_data))
-
-
-
-
+ """

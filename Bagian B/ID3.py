@@ -1,8 +1,7 @@
 from DTL import DecisionTree, Node
-from icecream import ic
 # from DTL import Node
 
-class id3(DecisionTree):
+class ID3(DecisionTree):
     def __init__(self, arr_instans, arr_target):
         DecisionTree.__init__(self, arr_instans, arr_target)
         
@@ -26,8 +25,8 @@ class id3(DecisionTree):
             return node_p
         else:
 
-            row = self.getTrainRowLength(arr_instans)
-            col = self.getTrainColLength(arr_instans)
+            row = DecisionTree.getTrainRowLength(arr_instans)
+            col = DecisionTree.getTrainColLength(arr_instans)
 
             #mencari atribut terbaik dari instans
             max_gain = 0 # value gain

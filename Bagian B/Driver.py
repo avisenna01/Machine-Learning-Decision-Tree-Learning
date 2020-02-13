@@ -1,6 +1,7 @@
 import pandas
 from DTL import Node
-from ID3 import id3 
+from ID3 import ID3
+from C45 import C45 
 from sklearn import preprocessing
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
@@ -42,7 +43,7 @@ iris_train_instances, iris_test_instances, iris_train_targets, iris_test_targets
 test_instances = [[1, 1], [0, 0]]
 test_targets = []
 
-id = id3(iris_train_instances,iris_train_targets)
+id = C45(iris_train_instances,iris_train_targets)
 id.fit(id.instances,id.targets)
 print(id.predict(iris_test_instances))
 

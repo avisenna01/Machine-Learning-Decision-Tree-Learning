@@ -51,7 +51,7 @@ class Node:
 
         max_num = 0
         final_target = None
-        for target, val in num:
+        for target, val in num.items():
             if val >= max_num:
                 max_num = val
                 final_target = target
@@ -62,8 +62,9 @@ class Node:
         print("RULE_CHILDREN ->",self.rule_children)
         print("ATTRIBUTE ->",self.attribute)
         print("INSTANCES ->",self.instances)
-        print("TARGET ->",self.targets)
+        print("TARGETS ->",self.targets)
         print("ENTROPI ->" , self.entropy)
+        print("TARGET ->", self.target, "\n")
 
 class DecisionTree():
 
@@ -93,3 +94,29 @@ class DecisionTree():
         for target in targets:
             p = sv[target]/s
             entropy += -1*(p)*log2(p)
+
+        return entropy
+
+    @staticmethod
+    def information_gain(parent_ent, S,  list_targets):
+        gain = parent_ent
+
+        for targets in list_targets:
+            gain -= len(targets)*DecisionTree.entropy(targets)/S
+
+        return gain
+    
+    @staticmethod
+    def getTrainColLength(arr_instans):
+        count=0
+        for i in arr_instans[0]:
+            count+=1
+        return count
+    
+    @staticmethod
+    def getTrainRowLength(arr_instans):
+        count=0
+        for i in arr_instans:
+            count+=1
+        return count
+        
