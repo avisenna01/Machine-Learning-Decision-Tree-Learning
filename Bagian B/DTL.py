@@ -1,18 +1,14 @@
 from abc import ABC, abstractmethod
 from math import log2
 import pandas
-import Tree
-
 
 class Node:
 
-    def __init__(self, instances, targets):
+    def __init__(self, instances, targets, target=None):
         self.rule_children = {}     #dictionary yang berisi string (rule) sebagai key-nya dan objek Node sebagai valuenya
-        self.entropy = 0            #nilai entropy node
-        self.target = None          #nilai target jika ada (untuk node-node daun)
+        self.target = target          #nilai target jika ada (untuk node-node daun)
         self.instances = instances  #array yang menyimpan instans
         self.targets = targets      #array yang menyimpan target
-
         self.entropy = self.calc_entropy()
 
     def get_instances(self):
@@ -30,12 +26,10 @@ class Node:
     def get_rule_children(self):
         return self.rule_children
     
-    def next_node(self):
-        X = self.instances
+    def next_node(self, X):
         for rule in self.rule_children.keys():
             if eval(rule):
                 return self.rule_children[rule]
-        
         return Node([], [])
             
     def set_rule_children(self, str_rules, children_nodes):
@@ -44,14 +38,17 @@ class Node:
 
     def calc_entropy(self):
         s = len(self.instances) #Banyaknya instans
-        sv = [0]*s              #Menyimpan banyaknya instans dari kelas tertentu
+        sv = {}                 #Menyimpan banyaknya instans dari kelas tertentu
         entropy = 0             #Variabel sum
 
         for target in self.targets:
-            sv[target] += 1
+            if target in sv.keys():
+                sv[target] += 1
+            else:
+                sv[target] = 1
 
         for target in self.targets:
-            p = s/sv[target]
+            p = sv[target]/s
             entropy += -1*(p)*log2(p)
 
         return entropy
