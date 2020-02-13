@@ -51,7 +51,7 @@ class Node:
 
         max_num = 0
         final_target = None
-        for target, val in num:
+        for target, val in num.items():
             if val >= max_num:
                 max_num = val
                 final_target = target
@@ -62,8 +62,9 @@ class Node:
         print("RULE_CHILDREN ->",self.rule_children)
         print("ATTRIBUTE ->",self.attribute)
         print("INSTANCES ->",self.instances)
-        print("TARGET ->",self.targets)
+        print("TARGETS ->",self.targets)
         print("ENTROPI ->" , self.entropy)
+        print("TARGET ->", self.target, "\n")
 
 class DecisionTree():
 
