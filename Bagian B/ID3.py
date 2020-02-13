@@ -2,10 +2,11 @@ from DTL import DecisionTree, Node
 # from DTL import Node
 
 class id3(DecisionTree):
-    def __init__(self, arr_instans, arr_target):
+    def __init__(self, arr_instans, arr_target, root=None):
         DecisionTree.__init__(self, arr_instans, arr_target)
         self.instances = arr_instans
         self.targets = arr_target
+        self.root = root
 
     def predict(self, instances):
         pass
@@ -67,4 +68,5 @@ class id3(DecisionTree):
             print(list_node)
             node_p.set_rule_children(list_rules,list_node)
             node_p.print_node()
+            self.root = node_p
             return node_p
