@@ -29,5 +29,3 @@ id.fit(id.instances,id.targets)
 # makan[0] = node1
 # makan[1] = node2
 # makan[3] = node3
-
-

@@ -40,7 +40,7 @@ class Node:
         return entropy
 
     def print_node(self):
-        # print(self.rule_children)
+        print(self.rule_children)
         print(self.attribute)
         print(self.instances)
         print(self.targets)
