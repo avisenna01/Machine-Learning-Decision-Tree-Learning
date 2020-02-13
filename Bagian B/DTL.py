@@ -39,3 +39,16 @@ class DecissionTree(ABC):
             info_gain -= abs(len(arr_childrens_target[i]))*self.entropy(arr_childrens_target[i])/ abs(num_parent_instance)
 
         return info_gain
+
+    def getTrainColLength(self,arr_instans):
+        count=0
+        for i in arr_instans[0]:
+            count+=1
+        return count
+    
+    def getTrainColRow(self,arr_instans):
+        count=0
+        for i in arr_instans:
+            count+=1
+        return count
+        
