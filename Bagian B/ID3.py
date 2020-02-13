@@ -1,7 +1,7 @@
-from .DTL import DecissionTree
-from .DTL import Node
+from DTL import DecisionTree, Node
+# from DTL import Node
 
-class id3(DecissionTree):
+class id3(DecisionTree):
     def __init__(self, arr_instans, arr_target):
         self.arr_instans = arr_instans
         self.arr_target = arr_target
@@ -9,8 +9,8 @@ class id3(DecissionTree):
     def id3(self, arr_instans, arr_target):
         n = Node(arr_instans,arr_target)
 
-        row = DecissionTree.getTrainRowLength(arr_instans)
-        col = DecissionTree.getTrainColLength(arr_instans)
+        row = super.getTrainRowLength(arr_instans)
+        col = super.getTrainColLength(arr_instans)
 
         max_gain = 0 # value gain
         idx_gain = 0 # index col gain
@@ -20,7 +20,7 @@ class id3(DecissionTree):
             for i in range(row):
                 list_col.append(arr_instans[i][j])
 
-            gain = DecissionTree.information_gain(list_col,arr_target)
+            gain = super.information_gain(list_col,arr_target)
 
             if (max_gain < gain):
                 max_gain = gain
