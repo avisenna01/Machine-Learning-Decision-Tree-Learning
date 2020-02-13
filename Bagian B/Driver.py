@@ -39,7 +39,7 @@ id.fit(id.instances,id.targets)
 # Node testing
 """ instances = [[0, 1, 2], [2, 1, 0]]
 targets = [1, 0]
-rules = ["== 0"]
+rules = ["== 0"] 
 root = Node(0, instances, targets)
 
 nodes = [Node(1, [instances[0]], [targets[0]])]
