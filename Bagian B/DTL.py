@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from math import log2
 import pandas
+import Tree
+
 
 class Node:
 
@@ -34,7 +36,7 @@ class Node:
             if eval(rule):
                 return self.rule_children[rule]
         
-        return Node([])
+        return Node([], [])
             
     def set_rule_children(self, str_rules, children_nodes):
         for i, str_rule in enumerate(str_rules):
