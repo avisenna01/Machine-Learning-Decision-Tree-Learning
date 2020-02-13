@@ -9,6 +9,7 @@ class Node:
         self.instances = instances  #array yang menyimpan instans
         self.targets = targets      #array yang menyimpan target
         self.entropy = self.calc_entropy()
+        self.target = None
     
     def next_node(self, X):
         if self.attribute != None:
@@ -16,7 +17,7 @@ class Node:
                 if eval("X[" + str(self.attribute) + "] " + rule):
                     return self.rule_children[rule]
         
-        return Node([], [])
+        return Node()
             
     def set_rule_children(self, str_rules, children_nodes):
         for i, str_rule in enumerate(str_rules):
@@ -39,12 +40,30 @@ class Node:
 
         return entropy
 
+    def calc_target(self):
+        num = {}
+
+        for target in self.targets:
+            if target not in num.keys():
+                num[target] = 0
+            else:
+                num[target] += 1
+
+        max_num = 0
+        final_target = None
+        for target, val in num:
+            if val >= max_num:
+                max_num = val
+                final_target = target
+
+        return final_target 
+
     def print_node(self):
-        print(self.rule_children)
-        print(self.attribute)
-        print(self.instances)
-        print(self.targets)
-        print(self.entropy)
+        print("RULE_CHILDRED ->",self.rule_children)
+        print("ATTRIBUTE ->",self.attribute)
+        print("INSTANCES ->",self.instances)
+        print("TARGET ->",self.targets)
+        print("ENTROPI ->" , self.entropy)
 
 class DecisionTree():
 
