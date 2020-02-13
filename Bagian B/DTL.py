@@ -55,15 +55,27 @@ class DecisionTree():
     #     csvFile = pandas.read_csv(file)
     #     return csvFile
     
-    def information_gain(self, parent_node, children_nodes):
-        info_gain = parent_node.get_entropy()
+    # def information_gain(self, parent_node, children_nodes):
+    #     info_gain = parent_node.get_entropy()
         
-        num_parent_instance = len(parent_node.get_instances())
+    #     num_parent_instance = len(parent_node.get_instances())
+    #     num_childrens = len(children_nodes) # ?
+
+    #     for i in range(num_childrens):
+    #         num_children_targets = len(children_nodes[i].get_targets())
+    #         info_gain -= abs(num_children_targets) * children_nodes[i].get_entropy() / abs(num_parent_instance)
+
+    #     return info_gain
+
+    def information_gain(self, parent_node, children_nodes):
+        info_gain = parent_node.entropy
+        
+        num_parent_instance = len(parent_node.instances)
         num_childrens = len(children_nodes) # ?
 
         for i in range(num_childrens):
-            num_children_targets = len(children_nodes[i].get_targets())
-            info_gain -= abs(num_children_targets) * children_nodes[i].get_entropy() / abs(num_parent_instance)
+            num_children_targets = len(children_nodes[i].targets)
+            info_gain -= abs(num_children_targets) * children_nodes[i].entropy / abs(num_parent_instance)
 
         return info_gain
 
