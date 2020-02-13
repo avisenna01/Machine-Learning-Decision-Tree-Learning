@@ -4,16 +4,19 @@ import pandas
 
 class Node:
 
-    def __init__(self, instances, targets):
+    def __init__(self, attribute=None, instances=[], targets=[]):
         self.rule_children = {}     #dictionary yang berisi string (rule) sebagai key-nya dan objek Node sebagai valuenya
+        self.attribute = attribute  #integer, index atribut yang dicek pada node tersebut, index dimulai dari 0
         self.instances = instances  #array yang menyimpan instans
         self.targets = targets      #array yang menyimpan target
         self.entropy = self.calc_entropy()
     
     def next_node(self, X):
-        for rule in self.rule_children.keys():
-            if eval(rule):
-                return self.rule_children[rule]
+        if self.attribute != None:
+            for rule in self.rule_children.keys():
+                if eval("X[" + str(self.attribute) + "] " + rule):
+                    return self.rule_children[rule]
+        
         return Node([], [])
             
     def set_rule_children(self, str_rules, children_nodes):
