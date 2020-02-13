@@ -5,9 +5,7 @@ from icecream import ic
 class id3(DecisionTree):
     def __init__(self, arr_instans, arr_target):
         DecisionTree.__init__(self, arr_instans, arr_target)
-        self.instances = arr_instans
-        self.targets = arr_target
-        self.root = None
+        
 
     def predict(self, instances):
         predictions = []
@@ -89,40 +87,6 @@ class id3(DecisionTree):
             #set rules children untuk nope_p
             node_p.set_rule_children(rules, childrens)
             node_p.print_node()
-
-
-            """ temp_instans = arr_instans
-            temp_target = arr_target
-            length = len(temp_instans) # panjang list temp instans
-
-            list_att_val = []
-            # while len(temp_instans)>0:
-            for i in range(row):
-                if temp_instans[i][node_p.attribute] not in list_att_val:
-                    list_att_val.append(temp_instans[i][node_p.attribute])
-                
-            l = len(list_att_val)
-            list_node = []
-            list_rules = []
-
-            for val_idx in range(l):
-                children_instans = []
-                children_target_instans = []
-
-                for i in range(length):
-                    if (temp_instans[i][node_p.attribute]==list_att_val[val_idx]):    
-                        children_instans.append(temp_instans[i])
-                        children_target_instans.append(temp_target[i])
-                #         print("test1")
-                #     print("test2")
-                # print("test3")
-                list_node.append(self.fit(children_instans, children_target_instans))
-                list_rules.append("== "+str(val_idx))
-            
-            print(list_rules)
-            print(list_node)
-            node_p.set_rule_children(list_rules,list_node)
-            node_p.print_node() """
 
             self.root = node_p
 
