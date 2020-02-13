@@ -11,7 +11,7 @@ class id3(DecisionTree):
         pass
 
     def fit(self, arr_instans, arr_target):
-        n = Node(arr_instans,arr_target)
+        node_p = Node(instances=arr_instans,targets=arr_target)
 
         row = self.getTrainRowLength(arr_instans)
         col = self.getTrainColLength(arr_instans)
@@ -24,7 +24,7 @@ class id3(DecisionTree):
             for i in range(row):
                 list_col.append(arr_instans[i][j])
 
-            gain = self.information_gain(list_col,arr_target)
+            gain = self.information_gain(list_col,arr_target, node_p)
 
             if (max_gain < gain):
                 max_gain = gain
@@ -54,7 +54,7 @@ class id3(DecisionTree):
 
             list_node.append(id3(children_instans, children_target_instans))
         
-        n.set_rule_children(["=="],list_node)
+        node_p.set_rule_children(["=="],list_node)
                         
 
         
