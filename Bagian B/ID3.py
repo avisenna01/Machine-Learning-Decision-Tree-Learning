@@ -6,10 +6,16 @@ class id3(DecisionTree):
         DecisionTree.__init__(self, arr_instans, arr_target)
         self.instances = arr_instans
         self.targets = arr_target
-        self.root = root
+        self.root = None
 
     def predict(self, instances):
-        pass
+        predictions = []
+        for instance in instances:
+            root = self.root
+            while root.attribute != None:
+                root = root.next_node(instance)
+        predictions += [root.calc_entropy()]
+        return predictions
 
     def fit(self, arr_instans, arr_target):
         node_p = Node(instances=arr_instans,targets=arr_target)
