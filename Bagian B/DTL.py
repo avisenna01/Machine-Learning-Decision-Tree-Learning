@@ -6,7 +6,7 @@ class Node:
 
     def __init__(self, instances, targets):
         self.rule_children = {}     #dictionary yang berisi string (rule) sebagai key-nya dan objek Node sebagai valuenya
-        self.entropy = 0            #nilai entropy node
+        # self.entropy = 0            #nilai entropy node
         self.target = None          #nilai target jika ada (untuk node-node daun)
         self.instances = instances  #array yang menyimpan instans
         self.targets = targets      #array yang menyimpan target
@@ -65,9 +65,9 @@ class DecisionTree(ABC):
     def predict(self, instances):
         pass
 
-    def read_csv(self, file): # file dalam string
-        csvFile = pandas.read_csv(file)
-        return csvFile
+    # def read_csv(self, file): # file dalam string
+    #     csvFile = pandas.read_csv(file)
+    #     return csvFile
     
     def information_gain(self, parent_node, children_nodes):
         info_gain = parent_node.get_entropy()
