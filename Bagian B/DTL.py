@@ -132,6 +132,12 @@ class DecisionTree():
             ent-= (l_sum[i]/ratio)*n_temp.entropy
         
         return ent
+    
+    def split_information(self, list_col, arr_target, node_p):
+        # TBD
+
+    def gain_ratio(self, list_col, arr_target, node_p):
+        return information_gain(list_col, arr_target, node_p) / split_information(list_col, arr_target, node_p)
 
     def getTrainColLength(self,arr_instans):
         count=0
