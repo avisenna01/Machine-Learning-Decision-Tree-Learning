@@ -21,7 +21,7 @@ child = root.next_node(instances[0])
 child.set_rule_children(["== 1"], [Node([instances[1]], [targets[1]])])
 
 some_child = root.next_node(instances[0])
-print(some_child.rule_children)
+# print(some_child.rule_children)
 
 id = id_3(instances,targets)
 id.fit(id.instances,id.targets)
