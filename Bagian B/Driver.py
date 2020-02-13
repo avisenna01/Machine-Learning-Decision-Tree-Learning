@@ -1,6 +1,6 @@
 import pandas
 from DTL import Node
-from ID3 import id3 as id_3
+from ID3 import id3 
 from sklearn import preprocessing
 from sklearn.datasets import load_iris
 
@@ -21,13 +21,11 @@ child = root.next_node(instances[0])
 child.set_rule_children(["== 1"], [Node([instances[1]], [targets[1]])])
 
 some_child = root.next_node(instances[0])
-print(some_child.rule_children)
+# print(some_child.rule_children)
 
-id = id_3(instances,targets)
+id = id3(instances,targets)
 id.fit(id.instances,id.targets)
 
 # makan[0] = node1
 # makan[1] = node2
 # makan[3] = node3
-
-
