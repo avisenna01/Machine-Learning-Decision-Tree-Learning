@@ -39,6 +39,13 @@ class Node:
 
         return entropy
 
+    def print_node(self):
+        print(self.rule_children)
+        print(self.attribute)
+        print(self.instances)
+        print(self.targets)
+        print(self.entropy)
+
 class DecisionTree():
 
     def __init__(self, arr_instans, arr_target):
@@ -67,17 +74,44 @@ class DecisionTree():
 
     #     return info_gain
 
-    def information_gain(self, parent_node, children_nodes):
-        info_gain = parent_node.entropy
+    # def information_gain(self, parent_node, children_nodes):
+    #     info_gain = parent_node.entropy
         
-        num_parent_instance = len(parent_node.instances)
-        num_childrens = len(children_nodes) # ?
+    #     num_parent_instance = len(parent_node.instances)
+    #     num_childrens = len(children_nodes) # ?
 
-        for i in range(num_childrens):
-            num_children_targets = len(children_nodes[i].targets)
-            info_gain -= abs(num_children_targets) * children_nodes[i].entropy / abs(num_parent_instance)
+    #     for i in range(num_childrens):
+    #         num_children_targets = len(children_nodes[i].targets)
+    #         info_gain -= abs(num_children_targets) * children_nodes[i].entropy / abs(num_parent_instance)
 
-        return info_gain
+    #     return info_gain
+
+    def information_gain(self, list_col, arr_target, node_p):
+        ent = node_p.entropy
+        ratio = len(list_col)
+        l = []
+        l_sum = []
+        for i in list_col:
+            if i not in l:
+                l.append(i)
+                l_sum.append(1)
+            else:
+                for j in range(len(l)):
+                    if (i == l[j]):
+                        l_sum[j]+=1
+                        break
+        att_total = len(l) # total atribut
+        for i in range(att_total):
+            ins = []
+            tgt = []
+            for j in range(ratio):
+                if (list_col[j]==l[i]):
+                    ins.append(list_col[j])
+                    tgt.append(arr_target[j])
+            n_temp = Node(instances=ins,targets=tgt)
+            ent-= (l_sum[i]/ratio)*n_temp.entropy
+        
+        return ent
 
     def getTrainColLength(self,arr_instans):
         count=0

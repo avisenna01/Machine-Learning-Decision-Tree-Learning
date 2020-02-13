@@ -1,6 +1,6 @@
 import pandas
 from DTL import Node
-from ID3 import id3 as id_3
+from ID3 import id3 
 from sklearn import preprocessing
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
