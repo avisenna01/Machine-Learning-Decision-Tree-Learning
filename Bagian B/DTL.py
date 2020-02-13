@@ -1,4 +1,3 @@
-from abc import ABC, abstractmethod
 from math import log2
 import pandas
 
@@ -40,12 +39,15 @@ class Node:
 
         return entropy
 
-class DecisionTree(ABC):
+class DecisionTree():
 
-    @abstractmethod
+    def __init__(self, arr_instans, arr_target):
+        self.instances = arr_instans
+        self.target = arr_target
+
     def fit(self, instances, targets):
         pass
-    @abstractmethod
+    
     def predict(self, instances):
         pass
 
@@ -71,7 +73,7 @@ class DecisionTree(ABC):
             count+=1
         return count
     
-    def getTrainColRow(self,arr_instans):
+    def getTrainRowLength(self,arr_instans):
         count=0
         for i in arr_instans:
             count+=1
