@@ -38,9 +38,13 @@ iris_targets = iris_datasets.target
 
 iris_train_instances, iris_test_instances, iris_train_targets, iris_test_targets = train_test_split(iris_instances, iris_targets, test_size=0.2, random_state=42)
 
-id = id3(tennis_instances,tennis_targets)
+#testing kode
+test_instances = [[1, 1], [0, 0]]
+test_targets = []
+
+id = id3(iris_train_instances,iris_train_targets)
 id.fit(id.instances,id.targets)
-print(id.predict(tennis_instances))
+print(id.predict(iris_test_instances))
 
 # Node testing
 """ instances = [[0, 1, 2], [2, 1, 0]]
