@@ -21,7 +21,7 @@ class id3(DecisionTree):
             col = self.getTrainColLength(arr_instans)
 
             max_gain = 0 # value gain
-            self.attribute = 0 # index col gain idx_gain
+            node_p.attribute = 0 # index col gain idx_gain
 
             for j in range(col):
                 list_col = []
@@ -32,7 +32,7 @@ class id3(DecisionTree):
 
                 if (max_gain < gain):
                     max_gain = gain
-                    self.attribute = j
+                    node_p.attribute = j
 
             temp_instans = arr_instans
             temp_target = arr_target
@@ -41,8 +41,8 @@ class id3(DecisionTree):
             list_att_val = []
             # while len(temp_instans)>0:
             for i in range(row):
-                if temp_instans[i][self.attribute] not in list_att_val:
-                    list_att_val.append(temp_instans[i][self.attribute])
+                if temp_instans[i][node_p.attribute] not in list_att_val:
+                    list_att_val.append(temp_instans[i][node_p.attribute])
                 
             l = len(list_att_val)
             list_node = []
@@ -52,7 +52,7 @@ class id3(DecisionTree):
                 children_target_instans = []
 
                 for i in range(length):
-                    if (temp_instans[i][self.attribute]==list_att_val[val_idx]):    
+                    if (temp_instans[i][node_p.attribute]==list_att_val[val_idx]):    
                         children_instans.append(temp_instans[i])
                         children_target_instans.append(temp_target[i])
                 #         print("test1")
