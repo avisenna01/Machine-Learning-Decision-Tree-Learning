@@ -25,4 +25,8 @@ print(some_child.get_rule_children()) """
 
 # id3()
 
+# makan[0] = node1
+# makan[1] = node2
+# makan[3] = node3
+
 
