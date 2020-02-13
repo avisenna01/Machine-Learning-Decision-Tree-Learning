@@ -27,7 +27,7 @@ for i in range(len(tennis_datasets)):
     tennis_instances.append([tennis_outlook[i],
                             tennis_temp[i],
                             tennis_humidity[i],
-                            tennsxq1is_wind[i]])
+                            tennis_wind[i]])
 
 #splitting tennis_datasets
 tennis_train_instances, tennis_test_instances, tennis_train_targets, tennis_test_targets = train_test_split(tennis_instances, tennis_targets, test_size=0.2, random_state=42)

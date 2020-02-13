@@ -69,7 +69,8 @@ class DecisionTree():
 
     def __init__(self, arr_instans, arr_target):
         self.instances = arr_instans
-        self.target = arr_target
+        self.targets = arr_target
+        self.root = None
 
     def fit(self, instances, targets):
         pass

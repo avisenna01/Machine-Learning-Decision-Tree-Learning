@@ -8,7 +8,7 @@ import math
 class C45():
 
     def post_prune(self):
-        return null
+        return None
 
     def target_most_common_attribute(training_data):
 
