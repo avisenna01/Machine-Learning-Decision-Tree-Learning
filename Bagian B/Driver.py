@@ -29,12 +29,18 @@ for i in range(len(tennis_datasets)):
                             tennis_humidity[i],
                             tennis_wind[i]])
 
+#splitting tennis_datasets
+tennis_train_instances, tennis_test_instances, tennis_train_targets, tennis_test_targets = train_test_split(tennis_instances, tennis_targets, test_size=0.2, random_state=42)
+
 #pre-process iris datasets
 iris_instances = iris_datasets.data
 iris_targets = iris_datasets.target
 
+iris_train_instances, iris_test_instances, iris_train_targets, iris_test_targets = train_test_split(iris_instances, iris_targets, test_size=0.2, random_state=42)
+
 id = id3(tennis_instances,tennis_targets)
 id.fit(id.instances,id.targets)
+print(id.predict(tennis_instances))
 
 # Node testing
 """ instances = [[0, 1, 2], [2, 1, 0]]

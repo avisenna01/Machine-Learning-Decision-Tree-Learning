@@ -2,7 +2,7 @@ from DTL import DecisionTree, Node
 # from DTL import Node
 
 class id3(DecisionTree):
-    def __init__(self, arr_instans, arr_target, root=None):
+    def __init__(self, arr_instans, arr_target):
         DecisionTree.__init__(self, arr_instans, arr_target)
         self.instances = arr_instans
         self.targets = arr_target
@@ -14,14 +14,16 @@ class id3(DecisionTree):
             root = self.root
             while root.attribute != None:
                 root = root.next_node(instance)
-        predictions += [root.calc_entropy()]
+            predictions.append(root.target)
         return predictions
 
     def fit(self, arr_instans, arr_target):
         node_p = Node(instances=arr_instans,targets=arr_target)
         
         if (node_p.entropy==0):
+            node_p.target = node_p.calc_target()
             node_p.print_node()
+
             return node_p
         else:
 
