@@ -2,7 +2,7 @@ from DTL import DecisionTree, Node
 # from DTL import Node
 
 class id3(DecisionTree):
-    def __init__(self, arr_instans, arr_target, root=None):
+    def __init__(self, arr_instans, arr_target):
         DecisionTree.__init__(self, arr_instans, arr_target)
         self.instances = arr_instans
         self.targets = arr_target
