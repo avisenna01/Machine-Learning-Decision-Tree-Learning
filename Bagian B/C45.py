@@ -14,10 +14,34 @@ class C45():
 
         target_name = training_data.columns[-1] #name of target attribute
         res = []
+        dict = {}
         for i in training_data[target_name].unique():
             res.append(training_data.loc[training_data[target_name] == i].mode().loc[0])
+            dict[i] = training_data.loc[training_data[target_name] == i].mode().loc[0]
 
-        return res
+        return dict
+
+    def missing_value_handler(training_data):
+
+        most_common_att = C45. target_most_common_attribute(training_data)
+        attribute_name = training_data.columns[:-1]
+        target_name = training_data.columns[-1]
+
+
+        for att in attribute_name:
+            indexes = training_data.index[training_data[att] == "None"].tolist()
+
+            for id in indexes:
+                print(training_data[target_name][id])
+                training_data[att][id] = most_common_att[training_data[target_name][id]][att]
+
+        
+        return training_data
+
+
+        
+
+
 
     def continuous_value(training_data):
 
@@ -58,12 +82,12 @@ class C45():
             #print(temp)
 
             split_point = candidate_index[temp]
-            sorted[att][:split_point] = 0
-            sorted[att][split_point:] = 1
+            sorted[att][:split_point] = int(0)
+            sorted[att][split_point:] = int(1)
 
             final_dataset = sorted
-            gigit
-        return final_dataset
+    
+        return final_dataset.astype(int)
 
     def entrophy(dataset):
         total_value = len(dataset)
@@ -102,10 +126,15 @@ iris_targets = pandas.DataFrame(iris.target)
 
 iris_data = df.assign(target = iris_targets.values)
 
+print(tennisData)
+
+print(tennisData.index[tennisData['play'] == "Yes"].tolist())
+
+print(C45.target_most_common_attribute(tennisData))
+print(C45.missing_value_handler(tennisData))
+
+print(C45.continuous_value(iris_data))
 
 
-tt = C45.continuous_value(iris_data)
-
-print(tt)
 
 
