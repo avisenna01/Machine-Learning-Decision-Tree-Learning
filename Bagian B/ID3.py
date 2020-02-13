@@ -15,6 +15,7 @@ class id3(DecisionTree):
         
         if (node_p.entropy==0):
             node_p.print_node()
+            return node_p
         else:
 
             row = self.getTrainRowLength(arr_instans)
@@ -46,6 +47,7 @@ class id3(DecisionTree):
                 
             l = len(list_att_val)
             list_node = []
+            list_rules = []
 
             for val_idx in range(l):
                 children_instans = []
@@ -59,6 +61,10 @@ class id3(DecisionTree):
                 #     print("test2")
                 # print("test3")
                 list_node.append(self.fit(children_instans, children_target_instans))
+                list_rules.append("== "+str(val_idx))
             
-            node_p.set_rule_children(["=="],list_node)
+            print(list_rules)
+            print(list_node)
+            node_p.set_rule_children(list_rules,list_node)
             node_p.print_node()
+            return node_p

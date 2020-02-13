@@ -59,7 +59,7 @@ class Node:
         return final_target 
 
     def print_node(self):
-        print("RULE_CHILDRED ->",self.rule_children)
+        print("RULE_CHILDREN ->",self.rule_children)
         print("ATTRIBUTE ->",self.attribute)
         print("INSTANCES ->",self.instances)
         print("TARGET ->",self.targets)
