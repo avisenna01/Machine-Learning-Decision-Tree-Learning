@@ -24,9 +24,9 @@ class Node:
             self.rule_children[str_rule] = children_nodes[i]
 
     def calc_entropy(self):
-        s = len(self.instances) #Banyaknya instans
-        sv = {}                 #Menyimpan banyaknya instans dari kelas tertentu
-        entropy = 0             #Variabel sum
+        s = len(self.instances) # Banyaknya instans
+        sv = {}                 # Menyimpan banyaknya instans dari kelas tertentu
+        entropy = 0             # Variabel sum
 
         for target in self.targets:
             if target in sv.keys():
